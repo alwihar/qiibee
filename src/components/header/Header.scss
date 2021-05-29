@@ -1,0 +1,20 @@
+.Header {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 52%, rgba(63,81,181,1) 100%);
+
+  .Header__bar {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 56px;
+
+    .Header__title {
+      padding: 0 20px;
+
+      .Header__link {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+      }
+    }
+  }
+}

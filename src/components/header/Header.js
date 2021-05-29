@@ -8,28 +8,15 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logOut} from "../../_redux/_actions";
 import {history} from "../../_helpers/history";
+import './Header.scss'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    header: {
-        backgroundColor: 'black'
-    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    title: {
-        flexGrow: 1,
-    },
-    bar: {
-        minHeight: '56px'
-    },
-    link: {
-        color: 'white',
-        fontSize: '18px',
-        textDecoration: 'none'
-    }
 }));
 
 export default function Header() {
@@ -44,22 +31,22 @@ export default function Header() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" className={classes.header}>
+            <AppBar position="static" className='Header'>
                 {
                     !loggedIn
                     ?
-                    <Toolbar className={classes.bar}>
-                        <Typography variant="h6" className={classes.title}>
-                            <Link to="/register" className={classes.link}>Register</Link>
+                    <Toolbar className='Header__bar'>
+                        <Typography variant="h6" className='Header__title'>
+                            <Link to="/register" className='Header__link'>Register</Link>
                         </Typography>
-                        <Typography variant="h6" className={classes.title}>
-                            <Link to="/login" className={classes.link}>Login</Link>
+                        <Typography variant="h6" className='Header__title'>
+                            <Link to="/login" className='Header__link'>Login</Link>
                         </Typography>
                     </Toolbar>
                     :
-                    <Toolbar className={classes.bar}>
-                        <Typography variant="h6" className={classes.title}>
-                            <Link to="/" className={classes.link}>Home</Link>
+                    <Toolbar className='Header__bar'>
+                        <Typography variant="h6" className='Header__title'>
+                            <Link to="/" className='Header__link'>Home</Link>
                         </Typography>
                         <Button color="inherit" onClick={handleLogout}>Logout</Button>
                     </Toolbar>

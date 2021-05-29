@@ -1,0 +1,24 @@
+.Brand {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+
+  .Brand__info {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 16px;
+
+    .Brand__data {
+      font-weight: bold;
+      padding-left: 10px;;
+    }
+  }
+
+  .Brand__button {
+    max-width: 100px;
+  }
+}

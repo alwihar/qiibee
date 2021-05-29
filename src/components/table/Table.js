@@ -11,10 +11,11 @@ import Paper from '@material-ui/core/Paper';
 import {useDispatch, useSelector} from "react-redux";
 import {addPoints, followBrand} from "../../_redux/_actions";
 import {Link} from "react-router-dom";
+import './Table.scss'
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#3f51b5',
         color: theme.palette.common.white,
     },
     body: {
@@ -53,53 +54,55 @@ export default function CustomizedTables({header, userData}) {
     }
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
+        <div className='Table'>
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            {
+                                header.map(cell => (
+                                    <StyledTableCell>{cell}</StyledTableCell>
+                                ))
+                            }
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {
-                            header.map(cell => (
-                                <StyledTableCell>{cell}</StyledTableCell>
+                            userData.map(user => (
+                                <>
+                                    {
+                                        mainUser === 'brand'
+                                            ?   user.followedBrands.includes(userCred.brandName) &&
+                                            <StyledTableRow key={user.id}>
+                                                <StyledTableCell component="th" scope="row">{user.firstName}</StyledTableCell>
+                                                <StyledTableCell>{user.lastName}</StyledTableCell>
+                                                <StyledTableCell>{user.customerPoints[userCred.brandName]}</StyledTableCell>
+                                                <StyledTableCell><Button onClick={() => handlePoints(user)}>+</Button></StyledTableCell>
+                                            </StyledTableRow>
+                                            :
+                                            <StyledTableRow key={user.id}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    <Link to={{
+                                                        pathname: '/' + user.id,
+                                                        aboutProps: {
+                                                            user: user
+                                                        }
+                                                    }}>
+                                                        {user.brandName}
+                                                    </Link>
+                                                </StyledTableCell>
+                                                <StyledTableCell>{user.brandSymbol}</StyledTableCell>
+                                                <StyledTableCell>{user.brandPoints}</StyledTableCell>
+                                                <StyledTableCell><img width='50px' height='50px' src={user.brandLogo}/></StyledTableCell>
+                                                <StyledTableCell><Button onClick={() => handleFollow(user)}>{customersData.find(user => user.email === userCred.email).followedBrands.includes(user.brandName) ? <>Unfollow</> : <>Follow</>}</Button></StyledTableCell>
+                                            </StyledTableRow>
+                                    }
+                                </>
                             ))
                         }
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        userData.map(user => (
-                            <>
-                                {
-                                    mainUser === 'brand'
-                                    ?   user.followedBrands.includes(userCred.brandName) &&
-                                        <StyledTableRow key={user.id}>
-                                            <StyledTableCell component="th" scope="row">{user.firstName}</StyledTableCell>
-                                            <StyledTableCell>{user.lastName}</StyledTableCell>
-                                            <StyledTableCell>{user.customerPoints[userCred.brandName]}</StyledTableCell>
-                                            <StyledTableCell><Button onClick={() => handlePoints(user)}>+</Button></StyledTableCell>
-                                        </StyledTableRow>
-                                        :
-                                        <StyledTableRow key={user.id}>
-                                            <StyledTableCell component="th" scope="row">
-                                                <Link to={{
-                                                    pathname: '/' + user.id,
-                                                    aboutProps: {
-                                                        user: user
-                                                    }
-                                                }}>
-                                                    {user.brandName}
-                                                </Link>
-                                            </StyledTableCell>
-                                            <StyledTableCell>{user.brandSymbol}</StyledTableCell>
-                                            <StyledTableCell>{user.brandPoints}</StyledTableCell>
-                                            <StyledTableCell><img width='50px' height='50px' src={user.brandLogo}/></StyledTableCell>
-                                            <StyledTableCell><Button onClick={() => handleFollow(user)}>{customersData.find(user => user.email === userCred.email).followedBrands.includes(user.brandName) ? <>Unfollow</> : <>Follow</>}</Button></StyledTableCell>
-                                        </StyledTableRow>
-                                }
-                            </>
-                        ))
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
 }

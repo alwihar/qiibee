@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomizedTables from "../../components/table/Table";
 import {useSelector} from "react-redux";
-import Wrap from "../../components/wrap/Wrap";
 
 const Home = () => {
     const user = useSelector(state => state.checked.user);

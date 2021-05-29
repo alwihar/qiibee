@@ -4,6 +4,7 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import {useDispatch, useSelector} from "react-redux";
 import {switchChecked, switchUser} from "../../_redux/_actions";
+import './Switch.scss'
 
 const AntSwitch = withStyles((theme) => ({
     root: {
@@ -56,12 +57,12 @@ export default function CustomizedSwitch() {
     };
 
     return (
-        <Grid component="label" container alignItems="center" spacing={1}>
-            <Grid item>Customer</Grid>
-            <Grid item>
+        <div className='Switch'>
+            <Grid className='Switch__item' item>Customer</Grid>
+            <Grid className='Switch__item' item>
                 <AntSwitch checked={checked} onChange={handleChange} name="checked" />
             </Grid>
-            <Grid item>Brand</Grid>
-        </Grid>
+            <Grid className='Switch__item' item>Brand</Grid>
+        </div>
     );
 }

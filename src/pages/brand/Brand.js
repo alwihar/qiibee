@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Button from '@material-ui/core/Button'
 import {redeemPoints} from "../../_redux/_actions";
+import './Brand.scss';
 
 const Brand = (props) => {
     let brand = props.location.aboutProps.user;
@@ -16,19 +17,34 @@ const Brand = (props) => {
     }
 
     return (
-        <>
-            <div>Brand name: {brand.brandName}</div>
-            <div>Brand Symbol: {brand.brandSymbol}</div>
-            Brand Logo: <img width='50px' height='50px' src={brand.brandLogo} alt=""/>
-            <div>Brand Points: {brand.brandPoints}</div>
+        <div className='Brand'>
+            <div className='Brand__info'>
+                Brand name:
+                <div className="Brand__data">{brand.brandName}</div>
+            </div>
+            <div className='Brand__info'>
+                Brand Symbol:
+                <div className="Brand__data">{brand.brandSymbol}</div>
+            </div>
+            <div className='Brand__info'>
+                Brand Logo:
+                <div className="Brand__data"><img width='50px' height='50px' src={brand.brandLogo} alt=""/></div>
+            </div>
+            <div className='Brand__info'>
+                Brand Points:
+                <div className="Brand__data">{brand.brandPoints}</div>
+            </div>
             {
                 (points || points===0) &&
                     <>
-                        <div>Customer Points: {points}</div>
-                        <Button onClick={handlePoints}>Redeem</Button>
+                        <div className='Brand__info'>
+                            Customer Points:
+                            <div className="Brand__data">{points}</div>
+                        </div>
+                        <Button className='Brand__button' onClick={handlePoints}>Redeem</Button>
                     </>
             }
-        </>
+        </div>
     )
 }
 
