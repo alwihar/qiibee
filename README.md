@@ -1,6 +1,7 @@
 # Getting started with qiibee test application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### The project is created with the help of React, Redux and Material UI.
 
 In the project directory run following script to start the app:
 
